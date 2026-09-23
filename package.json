@@ -1,0 +1,13 @@
+{
+  "name": "distriandina-analytics-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Simulador web educativo para el diplomado en Analítica Estratégica y Gobierno de Datos (DistriAndina S.A.S.)",
+  "scripts": {
+    "docker:build": "docker compose build",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:frontend": "npm --prefix frontend run build"
+  }
+}

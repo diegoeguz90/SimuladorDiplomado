@@ -39,6 +39,7 @@ app.include_router(router_retos.router)
 app.include_router(router_glosario.router)
 
 @app.get("/health")
+@app.get("/api/health")
 def health_check():
     return {
         "status": "ok",
@@ -47,14 +48,23 @@ def health_check():
         "company": COMPANY_NAME
     }
 
-@app.get("/")
-def root_info():
-    return {
-        "mensaje": f"Bienvenido a la API REST de {APP_NAME}",
-        "docs_url": "/docs",
-        "health": "/health"
-    }
+import os
+from fastapi.staticfiles import StaticFiles
+
+# Si existe la compilación del frontend (en Docker/Render/Producción unificada), servir la SPA
+dist_paths = [
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "frontend", "dist")),
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "dist")),
+    os.path.abspath(os.path.join(os.getcwd(), "frontend", "dist")),
+    os.path.abspath(os.path.join(os.getcwd(), "dist")),
+]
+
+for dist_path in dist_paths:
+    if os.path.exists(dist_path) and os.path.exists(os.path.join(dist_path, "index.html")):
+        app.mount("/", StaticFiles(directory=dist_path, html=True), name="frontend")
+        break
 
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("app.main:app", host="127.0.0.1", port=8000, reload=True)
+

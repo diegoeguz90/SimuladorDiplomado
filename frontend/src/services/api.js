@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://127.0.0.1:8000/api';
+// URL del backend: configurable via variable de entorno VITE_API_URL.
+// En producción unificada / Docker usa la ruta relativa '/api'. En desarrollo local usa 'http://127.0.0.1:8000/api'
+const API_BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://127.0.0.1:8000/api' : '/api');
 
 const client = axios.create({
   baseURL: API_BASE_URL,

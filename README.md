@@ -43,17 +43,33 @@ SimuladorDiplomado/
 
 ---
 
-## ⚡ Pasos de Arranque (2 Comandos)
+## ⚡ Pasos de Arranque
 
-### 1. Iniciar el Backend (Python / FastAPI)
+### Opción A: Con Docker (1 Solo Comando — Recomendado) 🐳
+Si tienes **Docker Desktop** instalado:
+```bash
+docker compose up -d
+```
+Abre tu navegador en **`http://localhost:8000`**. ¡Tanto la interfaz React como el backend FastAPI se ejecutan automáticamente juntos en el puerto 8000!
+
+Para detenerlo:
+```bash
+docker compose down
+```
+
+---
+
+### Opción B: Modo Desarrollo Local (2 Terminales)
+
+#### 1. Iniciar el Backend (Python / FastAPI)
 Abre una terminal en la carpeta raíz del proyecto:
 ```powershell
 cd backend
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --port 8000 --reload
 ```
-La API REST estará disponible en `http://127.0.0.1:8000`. Puedes explorar la documentación interactiva en `http://127.0.0.1:8000/docs`.
+La API REST estará disponible en `http://127.0.0.1:8000` (documentación OpenAPI en `/docs`).
 
-### 2. Iniciar el Frontend (React / Vite)
+#### 2. Iniciar el Frontend (React / Vite)
 Abre una segunda terminal en la carpeta raíz del proyecto:
 ```powershell
 cd frontend

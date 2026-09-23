@@ -40,29 +40,46 @@ La aplicación simula en tiempo real todo el ecosistema de datos de la empresa (
 
 ## 2. Instalación & Arranque Rápido
 
-Para utilizar la aplicación en cualquier computador portátil o de escritorio, sigue estos 2 sencillos pasos:
+Tienes dos formas de ejecutar la plataforma:
 
-### Requisitos Previos
+### Opción A: Con Docker (1 Solo Comando — Recomendado) 🐳
+Si tienes **Docker Desktop** instalado en tu computador:
+1. Abre tu terminal en la carpeta del proyecto y corre:
+   ```bash
+   docker compose up -d
+   ```
+2. Abre tu navegador en **`http://localhost:8000`**.
+   *¡Listo! Toda la aplicación (Frontend React y Backend FastAPI) se compila y ejecuta automáticamente en un solo contenedor.*
+3. Para detener el simulador:
+   ```bash
+   docker compose down
+   ```
+
+---
+
+### Opción B: Modo Desarrollo Tradicional (2 Terminales)
+
+#### Requisitos Previos
 - **Python 3.11, 3.12 o 3.13**
 - **Node.js v18, v20 o v22** (con `npm`)
 
-### Paso 1: Iniciar el Backend (Servidor de Datos FastAPI)
+#### Paso 1: Iniciar el Backend (FastAPI)
 Abre tu terminal en la carpeta raíz del proyecto (`SimuladorDiplomado`):
 ```powershell
 cd backend
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --port 8000 --reload
 ```
 > [!NOTE]
-> El backend quedará ejecutándose en `http://127.0.0.1:8000`. Puedes verificar que está activo entrando a `http://127.0.0.1:8000/health`.
+> El backend quedará ejecutándose en `http://127.0.0.1:8000`. Puedes verificar que está activo entrando a `http://127.0.0.1:8000/api/health`.
 
-### Paso 2: Iniciar el Frontend (Interfaz Web React)
+#### Paso 2: Iniciar el Frontend (React / Vite)
 Abre una segunda terminal en la carpeta del proyecto:
 ```powershell
 cd frontend
 npm run dev
 ```
 > [!TIP]
-> Abre tu navegador en **`http://localhost:5173`**. ¡La plataforma está lista para ser utilizada!
+> Abre tu navegador en **`http://localhost:5173`**.
 
 ---
 

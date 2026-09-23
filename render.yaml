@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: distriandina-analytics-lab
+    env: docker
+    plan: free
+    region: ohio
+    dockerfilePath: Dockerfile
+    autoDeploy: true
+    healthCheckPath: /api/health
